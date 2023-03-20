@@ -1,0 +1,24 @@
+name: django application
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'project1/india/**'
+
+
+      
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build & Push Image
+      run: |
+        docker login -u "${username}" -p ${PASSWD}
+        docker image build -t ${username}/django:"${ImageTag} -t ${username}/django:latest .
+        docker push ${username}/django:"${ImageTag}
+        docker push ${username}/django:latest
