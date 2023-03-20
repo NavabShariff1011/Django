@@ -3,7 +3,7 @@ name: django application
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'project1/india/**'
 
@@ -19,6 +19,6 @@ jobs:
     - name: Build & Push Image
       run: |
         docker login -u "${username}" -p ${PASSWD}
-        docker image build -t ${username}/django:"${ImageTag} -t ${username}/django:latest .
-        docker push ${username}/django:"${ImageTag}
+        docker image build -t ${username}/django:"${GITHUB_JOB} -t ${username}/django:latest .
+        docker push ${username}/django:"${GITHUB_JOB}
         docker push ${username}/django:latest
